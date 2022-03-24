@@ -1,0 +1,284 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns="http://www.w3.org/2000/svg"
+   width="512"
+   height="512"
+   viewBox="0 0 512 512"
+   version="1.1"
+   id="svg8">
+  <g
+     id="layer1">
+    <g
+       id="g936"
+       transform="translate(182.82372,28.325503)">
+      <path
+         style="fill:#000000;fill-opacity:0.5;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         d="M 5,78 V 38 H 38 V -1 h 40 v 39 h 48 v 40 z"
+         id="path891" />
+      <rect
+         style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:3.77953"
+         id="rect833"
+         width="32"
+         height="32"
+         x="1.889765"
+         y="1.889765"
+         rx="4"
+         ry="4" />
+      <rect
+         style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:3.77953"
+         id="rect833-3"
+         width="32"
+         height="32"
+         x="41.889767"
+         y="1.889765"
+         rx="4"
+         ry="4" />
+      <rect
+         style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:3.77953"
+         id="rect833-6"
+         width="32"
+         height="32"
+         x="49.889767"
+         y="41.889767"
+         rx="4"
+         ry="4" />
+      <rect
+         style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:3.77953"
+         id="rect833-7"
+         width="32"
+         height="32"
+         x="9.8897648"
+         y="41.889767"
+         rx="4"
+         ry="4" />
+      <rect
+         style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:3.77953"
+         id="rect833-5"
+         width="32"
+         height="32"
+         x="81.889763"
+         y="1.889765"
+         rx="4"
+         ry="4" />
+      <rect
+         style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:3.77953"
+         id="rect833-35"
+         width="32"
+         height="32"
+         x="89.889763"
+         y="41.889767"
+         rx="4"
+         ry="4" />
+      <text
+         xml:space="preserve"
+         style="font-size:24px;line-height:1.25;font-family:sans-serif"
+         x="46.55056"
+         y="26.67841"
+         id="text895"><tspan
+           id="tspan893"
+           x="46.55056"
+           y="26.67841">W</tspan></text>
+      <text
+         xml:space="preserve"
+         style="font-size:24px;line-height:1.25;font-family:sans-serif"
+         x="16.496178"
+         y="66.74205"
+         id="text899"><tspan
+           id="tspan897"
+           x="16.496178"
+           y="66.74205">A</tspan></text>
+      <text
+         xml:space="preserve"
+         style="font-size:24px;line-height:1.25;font-family:sans-serif"
+         x="58.12323"
+         y="66.74205"
+         id="text903"><tspan
+           id="tspan901"
+           x="58.12323"
+           y="66.74205">S</tspan></text>
+      <text
+         xml:space="preserve"
+         style="font-size:24px;line-height:1.25;font-family:sans-serif"
+         x="99.036072"
+         y="66.74205"
+         id="text907"><tspan
+           id="tspan905"
+           x="99.036072"
+           y="66.74205">D</tspan></text>
+      <text
+         xml:space="preserve"
+         style="font-size:24px;line-height:1.25;font-family:sans-serif"
+         x="88.540878"
+         y="26.67841"
+         id="text911"><tspan
+           id="tspan909"
+           x="88.540878"
+           y="26.67841">E</tspan></text>
+      <text
+         xml:space="preserve"
+         style="font-size:24px;line-height:1.25;font-family:sans-serif"
+         x="8.2288218"
+         y="26.67841"
+         id="text915"><tspan
+           id="tspan913"
+           x="8.2288218"
+           y="26.67841">Q</tspan></text>
+    </g>
+    <text
+       xml:space="preserve"
+       style="font-size:16px;line-height:1.25;font-family:sans-serif"
+       x="48.676525"
+       y="50.82354"
+       id="text940"><tspan
+         id="tspan938"
+         x="48.676525"
+         y="50.82354">Move camera up</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:16px;line-height:1.25;font-family:sans-serif"
+       x="313.72369"
+       y="50.82354"
+       id="text944"><tspan
+         id="tspan942"
+         x="313.72369"
+         y="50.82354">Move camera down</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:16px;line-height:1.25;font-family:sans-serif"
+       x="150.93246"
+       y="126.29166"
+       id="text948"><tspan
+         id="tspan946"
+         x="150.93246"
+         y="126.29166">Move camera horizontally</tspan></text>
+    <g
+       id="g1003"
+       transform="translate(0,-0.812085)">
+      <path
+         style="fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:1.9419px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         d="M 54.477134,175.55672 C 38.018124,176.39295 38.941951,191.0919 38.941951,191.0919 H 54.477134 Z"
+         id="path950" />
+      <path
+         style="fill:none;stroke:#000000;stroke-width:1.9419px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         d="M 57.380646,175.55672 C 73.839657,176.39295 72.91583,191.0919 72.91583,191.0919 H 57.380646 Z"
+         id="path952" />
+      <path
+         style="fill:none;stroke:#000000;stroke-width:1.9419px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         d="m 38.942325,193.66619 c 0,0 -1.021137,34.58119 17.259366,34.58119 18.280505,0 16.714139,-34.29321 16.714139,-34.29321 z"
+         id="path954" />
+    </g>
+    <g
+       id="g1008"
+       transform="translate(0,0.812085)">
+      <path
+         style="fill:none;stroke:#000000;stroke-width:1.9419px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         d="m 279.86964,173.93255 c -16.45901,0.83623 -15.53518,15.53518 -15.53518,15.53518 h 15.53518 z"
+         id="path984" />
+      <path
+         style="fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:1.9419px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         d="m 282.77315,173.93255 c 16.45901,0.83623 15.53519,15.53518 15.53519,15.53518 h -15.53519 z"
+         id="path986" />
+      <path
+         style="fill:none;stroke:#000000;stroke-width:1.9419px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         d="m 264.33483,192.04202 c 0,0 -1.02114,34.58119 17.25937,34.58119 18.2805,0 16.71414,-34.29321 16.71414,-34.29321 z"
+         id="path988" />
+    </g>
+    <text
+       xml:space="preserve"
+       style="font-size:16px;line-height:1.25;font-family:sans-serif"
+       x="88.737869"
+       y="195.22467"
+       id="text992"><tspan
+         id="tspan990"
+         x="88.737869"
+         y="195.22467">Select unit,</tspan><tspan
+         x="88.737869"
+         y="215.22467"
+         id="tspan994">give command</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:16px;line-height:1.25;font-family:sans-serif"
+       x="318.3414"
+       y="206.69667"
+       id="text998"><tspan
+         id="tspan996"
+         x="318.3414"
+         y="206.69667">Turn camera</tspan></text>
+    <g
+       id="g1157"
+       transform="translate(0,1.6622046)">
+      <rect
+         style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:3.77953"
+         id="rect833-70"
+         width="32"
+         height="32"
+         x="31.525267"
+         y="260.98129"
+         rx="4"
+         ry="4" />
+      <text
+         xml:space="preserve"
+         style="font-size:14px;line-height:1.25;font-family:sans-serif"
+         x="35.945465"
+         y="282.58896"
+         id="text915-7"><tspan
+           id="tspan913-5"
+           x="35.945465"
+           y="282.58896">Esc</tspan></text>
+    </g>
+    <text
+       xml:space="preserve"
+       style="font-size:16px;line-height:1.25;font-family:sans-serif"
+       x="88.737869"
+       y="262.8035"
+       id="text1127"><tspan
+         id="tspan1125"
+         x="88.737869"
+         y="262.8035">Abort command,</tspan><tspan
+         x="88.737869"
+         y="282.8035"
+         id="tspan1129">deselect unit,</tspan><tspan
+         x="88.737869"
+         y="302.8035"
+         id="tspan1131">developer mode</tspan></text>
+    <rect
+       style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:3.77953"
+       id="rect1133"
+       width="128"
+       height="32"
+       x="261.55475"
+       y="262.64349"
+       rx="4"
+       ry="4" />
+    <text
+       xml:space="preserve"
+       style="font-size:16px;line-height:1.25;font-family:sans-serif"
+       x="303.40277"
+       y="284.25116"
+       id="text1137"><tspan
+         id="tspan1135"
+         x="303.40277"
+         y="284.25116">Space</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:16px;line-height:1.25;font-family:sans-serif"
+       x="409.52386"
+       y="274.27548"
+       id="text1141"><tspan
+         x="409.52386"
+         y="274.27548"
+         id="tspan1143">Pause</tspan><tspan
+         x="409.52386"
+         y="294.27548"
+         id="tspan1147">the world</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:24px;line-height:1.25;font-family:sans-serif"
+       x="91.156471"
+       y="378.68976"
+       id="text1164"><tspan
+         id="tspan1162"
+         x="91.156471"
+         y="378.68976">Press Enter to start the game</tspan></text>
+  </g>
+</svg>

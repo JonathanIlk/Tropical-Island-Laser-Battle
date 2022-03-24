@@ -1,0 +1,6 @@
+src/external/lowbias32.hh: https://nullprogram.com/blog/2018/07/31/ (public domain)
+src/external/SimplexNoise/*: https://github.com/SRombauts/SimplexNoise (MIT License)
+data/shaders/noise2D.glsl: https://github.com/ashima/webgl-noise (MIT License)
+data/shaders/skybox/atmosphere.glsli: https://github.com/wwwtyro/glsl-atmosphere (Unlicense License)
+extern/assimp: https://graphics.rwth-aachen.de:9000/ptrettner/assimp-lean (Open Asset Import Library (assimp))
+extern/pcg-cpp/: https://github.com/imneme/pcg-cpp https://www.pcg-random.org/ (MIT/Apache-2.0)

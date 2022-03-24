@@ -1,0 +1,103 @@
+// SPDX-License-Identifier: MIT
+#include "RStar.hh"
+#include <iostream>
+#include "../external/lowbias32.hh"
+
+struct IntIntervalDomain {
+    using pos_t = std::int32_t;
+    using rect_t = std::pair<pos_t, pos_t>;
+    using measure_t = std::uint64_t;
+    using margin_t = std::uint32_t;
+    using distance_t = std::uint32_t;
+    static constexpr size_t dimension = 1;
+
+    std::optional<rect_t> intersect(const rect_t &a, const rect_t &b) const {
+        auto min = std::max(a.first, b.first);
+        auto max = std::min(a.second, b.second);
+        if (min >= max) {return std::nullopt;}
+        return std::make_pair(min, max);
+    }
+    rect_t union_(const rect_t &a, const rect_t &b) const {
+        return {std::min(a.first, b.first), std::max(a.second, b.second)};
+    }
+
+    measure_t area(const rect_t &v) const {
+        return std::uint64_t(v.second) - std::uint64_t(v.first);
+    }
+    margin_t margin(const rect_t &v) const {
+        return std::uint32_t(v.second) - std::uint32_t(v.first);
+    }
+
+    bool cmp(size_t axis, const rect_t &a, const rect_t &b) const {
+        return std::tie(a.first, a.second) < std::tie(b.first, b.second);
+    }
+    margin_t getMin(size_t axis, const rect_t &a) const {
+        return a.first;
+    }
+    margin_t getMax(size_t axis, const rect_t &a) const {
+        return a.second;
+    }
+
+    pos_t center(const rect_t &a) const {
+        return a.first + pos_t(margin(a) / 2);
+    }
+    distance_t dist(const pos_t &a, const pos_t &b) const {
+        return std::uint32_t(std::max(a, b)) - std::uint32_t(std::min(a, b));
+    }
+
+    rect_t rect(const rect_t &a) const {return a;}
+};
+
+int main() {
+    using rect_t = IntIntervalDomain::rect_t;
+    RTree<rect_t, IntIntervalDomain, std::allocator<rect_t>, 32, 32> tree;
+    std::vector<rect_t> data;
+    for (uint32_t i = 0; i < 1000000; ++i) {
+        int32_t min = std::int32_t(lowbias32(i) & 0xffffff) - 0x800000;
+        int32_t max = std::int32_t(lowbias32_r(i) & 0xfff) + min;
+        data.push_back({min, max});
+        decltype(tree)::RStarInserter::insert(tree, {min, max});
+    }
+    std::cerr << "tree constructed" << std::endl;
+    std::vector<rect_t> stack;
+    size_t visits = 0;
+    if (true) {
+        tree.visit([&] (const rect_t &a, decltype(tree)::level_t level) {
+            while (stack.size() > tree.depth() - level) {stack.pop_back();}
+            if (!stack.empty() && (a.first < stack.back().first || a.second > stack.back().second)) {
+                std::cerr << "nesting error" << std::endl;
+            }
+            for (size_t i = 0; i < stack.size(); ++i) {std::cout << "  ";}
+            std::cout << "check " << a.first << " " << a.second << std::endl;
+            stack.push_back(a);
+            return true;
+        }, [&] (const rect_t & a){
+            if (!stack.empty() && (a.first < stack.back().first || a.second > stack.back().second)) {
+                std::cerr << "nesting error" << std::endl;
+            }
+            for (size_t i = 0; i < stack.size(); ++i) {std::cout << "  ";}
+            std::cout << "visit " << a.first << " " << a.second << std::endl;
+            visits += 1;
+            return true;
+        });
+        std::cerr << visits << " visits" << std::endl;
+    }
+    visits = 0;
+    for (auto &&p : data) {
+        bool found = false;
+        tree.visit([&, p] (const rect_t &a, int) {
+            return a.first <= p.first && a.second >= p.second;
+        }, [&, p] (const rect_t & a){
+            if (a.first == p.first && a.second == p.second) {
+                found = true;
+                return false;
+            }
+            visits += 1;
+            return true;
+        });
+        if (!found) {
+            std::cerr << "did not find " << p.first << " " << p.second << std::endl;
+        }
+    }
+    std::cerr << visits << " visits while searching" << std::endl;
+}

@@ -1,0 +1,115 @@
+// SPDX-License-Identifier: MIT
+// this file collects all uniform definitions and common lighting computation for
+// all fragment shaders for normal lighting-affected objects
+
+#include "brdf.glsli"
+
+uniform sampler2DRectShadow uSunShadowTex;
+uniform sampler2DRect uSsaoTex;
+
+// OpenGL wiki advises programmers to avoid using vec3
+// so 3D positions and 3-component colors are stored as vec4
+layout(std140) uniform LightingUniforms {
+    vec4 sunDirection;  // normalize(vec3(-1, 1, 1))
+    vec4 sunRadiance;  // vec3(1.0, 0.9, 0.75) * 0.5
+    vec4 ambient;  // vec3(0.75, 1.0, 0.9) * 0.15
+    mat4 lightSpaceViewProj;
+
+    // when we want to support multiple lights, move these into some sort of array
+    vec4 lightPos;  // xyz: position, w: 1/radius^4
+    vec4 lightRadiance;  // vec3(5, 10, 6)
+} uLighting;
+
+#define ENABLE_SUN              1
+#ifndef ENABLE_POINTLIGHT
+#define ENABLE_POINTLIGHT       1
+#endif
+#define ENABLE_AMBIENT          1
+
+
+float lensq(vec3 v) {return dot(v, v);}
+
+float invsqAttenuation(float distSq, float radiusTerm) {
+    return pow2(saturate(1 - pow2(distSq) * radiusTerm)) / (distSq + 1);
+}
+
+float shadowAttenuation(vec3 worldSpacePos, vec3 worldSpaceNormal) {
+    vec4 lightSpacePos = uLighting.lightSpaceViewProj * vec4(worldSpacePos, 1);
+    vec3 projCoords = lightSpacePos.xyz / lightSpacePos.w;
+
+    // get depth of current fragment from light's perspective
+    float currentDepth = projCoords.z;
+    if(currentDepth > 1) {
+        return 1;
+    }
+
+    float depthBias = max(0.005 * (1.0 - dot(worldSpaceNormal, uLighting.sunDirection.xyz)), 0.0005);
+    vec3 coord = vec3(
+        projCoords.xy * textureSize(uSunShadowTex),
+        currentDepth - depthBias
+    );
+    // PCF
+    float shadow = 0.0;
+    // sadness: texel offsets must be constant, but we cannot have guaranteed
+    // loop unrolling in GLSL :(
+    shadow += textureOffset(uSunShadowTex, coord, ivec2(-1, -1));
+    shadow += textureOffset(uSunShadowTex, coord, ivec2(0, -1));
+    shadow += textureOffset(uSunShadowTex, coord, ivec2(1, -1));
+    shadow += textureOffset(uSunShadowTex, coord, ivec2(-1, 0));
+    shadow += textureOffset(uSunShadowTex, coord, ivec2(0, 0));
+    shadow += textureOffset(uSunShadowTex, coord, ivec2(1, 0));
+    shadow += textureOffset(uSunShadowTex, coord, ivec2(-1, 1));
+    shadow += textureOffset(uSunShadowTex, coord, ivec2(0, 1));
+    shadow += textureOffset(uSunShadowTex, coord, ivec2(1, 1));
+    shadow /= 9.0;
+
+    return shadow;
+}
+
+vec3 computeLighting(vec3 pos, vec3 camPos, vec3 N, vec3 albedo, vec3 ARM) {
+    float ambOcc = texture(uSsaoTex, gl_FragCoord.xy).x * ARM.x;
+    float roughness = ARM.y;
+    float metalness = ARM.z;
+    vec3 V = normalize(camPos - pos);
+
+    // angle between surface normal and outgoing light direction.
+    const float cosLo = saturate(dot(N, V));
+    // fresnel reflectance at normal incidence (for metals use albedo color).
+    const vec3 F0 = lerp(vec3(M_F_DIELECTRIC), albedo, metalness);
+
+    vec3 resultColor = vec3(0);
+
+#if ENABLE_SUN
+    resultColor += calculateDirectLight(
+        uLighting.sunDirection.xyz, V, cosLo,
+        uLighting.sunRadiance.rgb * shadowAttenuation(pos, N),
+        N, F0,
+        ambOcc, roughness, metalness, albedo
+    );
+#endif
+
+#if ENABLE_POINTLIGHT
+    {
+        const vec3 light2here = uLighting.lightPos.xyz - pos;
+        const float LdistSq = lensq(light2here);
+        const vec3 L = light2here * inversesqrt(LdistSq);
+
+        resultColor += calculateDirectLight(
+            L, V, cosLo,
+            uLighting.lightRadiance.rgb * invsqAttenuation(LdistSq, uLighting.lightPos.w),
+            N, F0,
+            ambOcc, roughness, metalness, albedo
+        );
+    }
+#endif
+
+#if ENABLE_AMBIENT
+    resultColor += calculateIndirectDiffuseLight(
+        uLighting.ambient.rgb,
+        F0,
+        cosLo, N, V,
+        metalness, ambOcc, albedo
+    );
+#endif
+    return resultColor;
+}

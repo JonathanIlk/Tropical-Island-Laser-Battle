@@ -1,0 +1,11 @@
+vec3 homogenize(vec4 v) { return vec3((1.0 / v.w) * v); }
+
+vec3 getVsPosFromTexCoord(vec2 texCoord, sampler2DRect depthTex, mat4 invProjMat) {
+    float fragmentDepth = texture(depthTex, texCoord * textureSize(depthTex)).r;
+
+    // Normalized Device Coordinates (clip space)
+    vec4 ndc = vec4(texCoord.x * 2.0 - 1.0, texCoord.y * 2.0 - 1.0, fragmentDepth * 2.0 - 1.0, 1.0);
+
+    // Transform to view space
+    return homogenize(invProjMat * ndc);
+}

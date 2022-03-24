@@ -1,0 +1,10 @@
+bin/
+build/
+build_vs/
+CMakeLists.txt.user
+
+cmake-build-*/
+.idea
+
+data/meshes/*.mtl
+/extern/
